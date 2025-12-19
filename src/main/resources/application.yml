@@ -28,3 +28,7 @@ mybatis:
   type-aliases-package: com.sist.web.vo
   mapper-locations: mybatis/mapper/*.xml
 
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind : TRACE

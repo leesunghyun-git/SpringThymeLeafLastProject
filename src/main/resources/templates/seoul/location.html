@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/assets/css/card.css}">
+</head>
+<body>
+  <div id="main-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3" th:each="vo:${list}">
+			    <div class="thumbnail">
+			      <a th:href="@{/seoul/detail(no=${vo.no},type=1)}">
+			        <img th:src="${vo.poster}" 
+			         style="width:240px;height: 130px" onerror="this.src='/images/NoImage.jpg'">
+			        <div class="caption">
+			          <p>[[${vo.title}]]</p>
+			        </div>
+			      </a>
+			 </div>				
+		</div>
+	</div>
+	<div class="row aln-center" style="margin-top: 10px">
+		  <ul class="pagination text-center">
+		    <li th:if="${startPage>1}">
+		      <a th:href="@{/seoul/location(page=${startPage-1})}">&laquo;</a></li>
+		    <li th:each="i:${#numbers.sequence(startPage,endPage)}"
+		     th:class="${curPage==i?'active':''}"
+		    ><a th:href="@{/seoul/location(page=${i})}">[[${i}]]</a></li>
+		    <li th:if="${endPage<totalPage}">
+		      <a th:href="@{/seoul/location(page=${endPage+1})}">&raquo;</a></li>
+		  </ul>
+		</div>
+  </div>
+  </div>
+</body>
+</html>
